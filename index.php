@@ -5,16 +5,12 @@ if ( isset($_POST['add-marker']) ) {
 
     $stmt = $pdo->prepare('INSERT INTO markers (name, latitude, longitude, description) VALUES (:name, :latitude, :longitude, :description)');
     $stmt->execute(['name' => $_POST['name'], 'latitude' => $_POST['latitude'], 'longitude' => $_POST['longitude'], 'description' => $_POST['description']]);
-
-    header('Location: index.php');
 }
 
 if ( isset($_POST['remove-marker']) ) {
 
     $stmt = $pdo->prepare('DELETE FROM markers WHERE id=:id');
     $stmt->execute(['id' => $_POST['id']]);
-
-    header('Location: index.php');
 }
 
 else {
@@ -45,7 +41,7 @@ else {
     <p>Click to add marker</p>
     <p>Click on the marker again to dispose of it</p>
     <div id="map"></div>
-
+    
     <form action="add-marker" method="post">
         <input type="text" name="name" placeholder="name">
         <br>
@@ -55,7 +51,7 @@ else {
         <br>
         <input type="text" name="description" placeholder="description">
         <br>
-        <input id="addMarkerButton" type="submit" name="add-marker" value="add marker">
+        <input id="addMarkerButton" type="submit" value="add marker">
     </form> 
 
     <form action="remove-marker" method="post">
@@ -90,7 +86,10 @@ else {
                 addMarkerLat.value = x.lat;
                 addMarkerLng.value = x.lng;
 
-                addMarkerButton.click();
+                <?php
+                $stmt = $pdo->prepare('INSERT INTO markers (name, latitude, longitude, description) VALUES (:name, :latitude, :longitude, :description)');
+                $stmt->execute(['name' => $_POST['name'], 'latitude' => $_POST['latitude'], 'longitude' => $_POST['longitude'], 'description' => $_POST['description']]);
+                ?>
 
                 const newMarker = new google.maps.marker.AdvancedMarkerElement({
                     position: mapsMouseEvent.latLng,
