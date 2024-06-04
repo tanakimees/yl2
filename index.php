@@ -46,7 +46,7 @@ else {
     <p>Click on the marker again to dispose of it</p>
     <div id="map"></div>
 
-    <form action="add_marker" method="post">
+    <form action="add-marker" method="post">
         <input type="text" name="name" placeholder="name">
         <br>
         <input id="addMarkerLat" type="text" name="latitude" placeholder="lat">
@@ -58,7 +58,7 @@ else {
         <input id="addMarkerButton" type="submit" name="add-marker" value="add marker">
     </form> 
 
-    <form action="remove_marker" method="post">
+    <form action="remove-marker" method="post">
         <input id="removeMarkerID" type="text" name="id" placeholder="id">
         <br>
         <input id="removeMarkerButton" type="submit" name="remove-marker" value="remove marker">
